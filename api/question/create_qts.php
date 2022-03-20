@@ -17,7 +17,6 @@
     $data = json_decode(file_get_contents("php://input"));
 
     $item->label = $data->label;
-    $item->text = $data->text;
     $item->type = $data->type;
     $item->type_reponse = $data->type_reponse;
     $item->reponse = $data->reponse;

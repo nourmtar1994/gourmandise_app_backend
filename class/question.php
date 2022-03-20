@@ -10,7 +10,6 @@
         // Columns
         public $id;
         public $label;
-        public $text;
         public $type;
         public $type_reponse;
         public $reponse;
@@ -23,7 +22,7 @@
 
         // GET ALL
         public function get_question(){
-            $sqlQuery = "SELECT id, label, text, type, type_reponse, created,reponse FROM " . $this->db_table . "";
+            $sqlQuery = "SELECT id, label, type, type_reponse, created,reponse FROM " . $this->db_table . "";
             $stmt = $this->conn->prepare($sqlQuery);
             $stmt->execute();
             return $stmt;
@@ -31,12 +30,11 @@
 
         // CREATE
         public function create_question(){
-            $sqlQuery = "insert into ".$this->db_table." (label,text,type,type_reponse,created,reponse) values (:label,:text,:type,:type_reponse,:created,:reponse)";
+            $sqlQuery = "insert into ".$this->db_table." (label,type,type_reponse,created,reponse) values (:label,:type,:type_reponse,:created,:reponse)";
             $stmt = $this->conn->prepare($sqlQuery);
         
             // sanitize
             $this->label=htmlspecialchars(strip_tags($this->label));
-            $this->text=htmlspecialchars(strip_tags($this->type_reponse));
             $this->type=htmlspecialchars(strip_tags($this->type));
             $this->type_reponse=htmlspecialchars(strip_tags($this->type_reponse));
             $this->created=htmlspecialchars(strip_tags($this->created));
@@ -44,7 +42,6 @@
         
             // bind data
             $stmt->bindParam(":label", $this->label);
-            $stmt->bindParam(":text", $this->text);
             $stmt->bindParam(":type", $this->type);
             $stmt->bindParam(":type_reponse", $this->type_reponse);
             $stmt->bindParam(":created", $this->created);
@@ -61,7 +58,6 @@
             $sqlQuery = "SELECT
                         id, 
                         label, 
-                        text, 
                         type, 
                         type_reponse, 
 						reponse,
@@ -78,7 +74,6 @@
             if(!empty($dataRow)) { 
             $this->id = $dataRow['id'];
             $this->label = $dataRow['label'];
-            $this->text = $dataRow['text'];
             $this->type = $dataRow['type'];
             $this->type_reponse = $dataRow['type_reponse'];
             $this->reponse = $dataRow['reponse'];
@@ -92,7 +87,6 @@
                         ". $this->db_table ."
                     SET
                         label = :label, 
-                        text = :text, 
                         type = :type, 
                         type_reponse = :type_reponse, 
                         reponse = :reponse,
@@ -103,7 +97,6 @@
             $stmt = $this->conn->prepare($sqlQuery);
         
             $this->label=htmlspecialchars(strip_tags($this->label));
-            $this->text=htmlspecialchars(strip_tags($this->text));
             $this->type=htmlspecialchars(strip_tags($this->type));
             $this->type_reponse=htmlspecialchars(strip_tags($this->type_reponse));
             $this->created=htmlspecialchars(strip_tags($this->created));
@@ -112,7 +105,6 @@
         
             // bind data
             $stmt->bindParam(":label", $this->label);
-            $stmt->bindParam(":text", $this->text);
             $stmt->bindParam(":type", $this->type);
             $stmt->bindParam(":type_reponse", $this->type_reponse);
             $stmt->bindParam(":created", $this->created);
