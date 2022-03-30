@@ -6,19 +6,19 @@
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
     
     include_once '../../config/database.php';
-    include_once '../../class/question.php';
+    include_once '../../class/users.php';
 
     
     $database = new Database();
     $db = $database->getConnection();
     
-    $item = new question($db);
+    $item = new users($db);
     
     $data = json_decode(file_get_contents("php://input"));
     
-    $item->id_question = $data->id_question;
+    $item->id = $data->id;
     
-    if($item->delete_question()){
+    if($item->delete()){
         echo json_encode("data deleted.");
     } else{
         echo json_encode("Data could not be deleted");

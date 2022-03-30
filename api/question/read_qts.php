@@ -14,22 +14,21 @@
 	
     if($itemCount > 0){
         $question = array();
-        $question["body"] = array();
+        $question["data"] = array();
         $question["itemCount"] = $itemCount;
 
          foreach ($rows as $row) {
             extract($row);
             $e = array(
-                "id" => $id,
+                "id_question" => $id_question,
                 "label" => $label,
-                "text" => $text,
                 "type" => $type,
                 "type_reponse" => $type_reponse,
                 "reponse" => $reponse,
                 "created" => $created
             );
 
-            array_push($question["body"], $e);
+            array_push($question["data"], $e);
         }
         echo json_encode($question);
     }

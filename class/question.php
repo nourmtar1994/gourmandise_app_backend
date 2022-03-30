@@ -8,7 +8,7 @@
         private $db_table = "question";
 
         // Columns
-        public $id;
+        public $id_question;
         public $label;
         public $type;
         public $type_reponse;
@@ -22,7 +22,7 @@
 
         // GET ALL
         public function get_question(){
-            $sqlQuery = "SELECT id, label, type, type_reponse, created,reponse FROM " . $this->db_table . "";
+            $sqlQuery = "SELECT * FROM " . $this->db_table . "";
             $stmt = $this->conn->prepare($sqlQuery);
             $stmt->execute();
             return $stmt;
@@ -41,6 +41,7 @@
             $this->reponse=htmlspecialchars(strip_tags($this->reponse));
         
             // bind data
+            
             $stmt->bindParam(":label", $this->label);
             $stmt->bindParam(":type", $this->type);
             $stmt->bindParam(":type_reponse", $this->type_reponse);
@@ -55,24 +56,13 @@
 
         // UPDATE
         public function getSingle_question(){
-            $sqlQuery = "SELECT
-                        id, 
-                        label, 
-                        type, 
-                        type_reponse, 
-						reponse,
-                        created
-                      FROM
-                        ". $this->db_table ."
-                    WHERE 
-                       id = ?
-                 ";
+            $sqlQuery = "SELECT * FROM ". $this->db_table ." WHERE id_question = ? ";
             $stmt = $this->conn->prepare($sqlQuery);
-            $stmt->bindParam(1, $this->id);
+            $stmt->bindParam(1, $this->id_question);
             $stmt->execute();
             $dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
             if(!empty($dataRow)) { 
-            $this->id = $dataRow['id'];
+            $this->id_question = $dataRow['id_question'];
             $this->label = $dataRow['label'];
             $this->type = $dataRow['type'];
             $this->type_reponse = $dataRow['type_reponse'];
@@ -92,7 +82,7 @@
                         reponse = :reponse,
                         created = :created
                     WHERE 
-                        id = :id";
+                        id_question = :id_question";
         
             $stmt = $this->conn->prepare($sqlQuery);
         
@@ -101,7 +91,7 @@
             $this->type_reponse=htmlspecialchars(strip_tags($this->type_reponse));
             $this->created=htmlspecialchars(strip_tags($this->created));
             $this->reponse=htmlspecialchars(strip_tags($this->reponse));
-            $this->id=htmlspecialchars(strip_tags($this->id));
+            $this->id_question=htmlspecialchars(strip_tags($this->id_question));
         
             // bind data
             $stmt->bindParam(":label", $this->label);
@@ -109,7 +99,7 @@
             $stmt->bindParam(":type_reponse", $this->type_reponse);
             $stmt->bindParam(":created", $this->created);
             $stmt->bindParam(":reponse", $this->reponse);
-            $stmt->bindParam(":id", $this->id);
+            $stmt->bindParam(":id_question", $this->id_question);
         
             if($stmt->execute()){
                return true;
@@ -119,12 +109,12 @@
 
         // DELETE
         function delete_question(){
-            $sqlQuery = "DELETE FROM " . $this->db_table . " WHERE id = ?";
+            $sqlQuery = "DELETE FROM " . $this->db_table . " WHERE id_question = ?";
             $stmt = $this->conn->prepare($sqlQuery);
         
-            $this->id=htmlspecialchars(strip_tags($this->id));
+            $this->id_question=htmlspecialchars(strip_tags($this->id_question));
         
-            $stmt->bindParam(1, $this->id);
+            $stmt->bindParam(1, $this->id_question);
         
             if($stmt->execute()){
                 return true;

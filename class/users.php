@@ -53,7 +53,7 @@
             return false;
         }
 
-        // UPDATE
+        // GetByid
         public function getById(){
             $sqlQuery = "SELECT
                         id, 
