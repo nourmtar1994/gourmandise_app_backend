@@ -35,7 +35,7 @@
         
             // sanitize
             $this->nom=htmlspecialchars(strip_tags($this->nom));
-            $this->region=htmlspecialchars(strip_tags($this->nbr_visite));
+            $this->region=htmlspecialchars(strip_tags($this->region));
             $this->type=htmlspecialchars(strip_tags($this->type));
             $this->nbr_visite=htmlspecialchars(strip_tags($this->nbr_visite));
             $this->created=htmlspecialchars(strip_tags($this->created));
@@ -46,7 +46,7 @@
             $stmt->bindParam(":type", $this->type);
             $stmt->bindParam(":nbr_visite", $this->nbr_visite);
             $stmt->bindParam(":created", $this->created);
-        
+        var_dump($this->region) ; 
             if($stmt->execute()){
                return true;
             }

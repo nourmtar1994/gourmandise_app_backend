@@ -16,6 +16,7 @@
 
     $data = json_decode(file_get_contents("php://input"));
 
+ 
     $item->nom = $data->nom;
     $item->region = $data->region;
     $item->type = $data->type;
