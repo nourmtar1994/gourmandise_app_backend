@@ -39,7 +39,7 @@ class client
 
         // sanitize
         $this->age = htmlspecialchars(strip_tags($this->age));
-        $this->sexe = htmlspecialchars(strip_tags($this->email));
+        $this->sexe = htmlspecialchars(strip_tags($this->sexe));
         $this->region = htmlspecialchars(strip_tags($this->region));
         $this->email = htmlspecialchars(strip_tags($this->email));
         $this->created = htmlspecialchars(strip_tags($this->created));
