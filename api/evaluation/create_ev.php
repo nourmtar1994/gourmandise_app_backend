@@ -22,9 +22,14 @@
     $item->id_pt_de_vente = $data->id_pt_de_vente;
     $item->created = date('y-m-d h:i:s');
     
-    if($item->createevaluation()){
-        echo 'created successfully.';
-    } else{
-        echo ' could not be created.';
+
+
+    if($item->id_question != '' ){
+        if($item->createevaluation()){
+            echo 'created successfully.';
+        } else{
+            echo ' could not be created.';
+        }
     }
+   
 ?>

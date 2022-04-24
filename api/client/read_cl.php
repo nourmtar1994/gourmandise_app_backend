@@ -25,6 +25,7 @@
                 "sexe" => $sexe,
                 "region" => $region,
                 "age" => $age,
+                "email" => $email,
                 "created" => $created,
             );
 
@@ -34,7 +35,7 @@
     }
 
     else{
-        http_response_code(404);
+        http_response_code(200);
         echo json_encode(
             array("message" => "No record found.")
         );

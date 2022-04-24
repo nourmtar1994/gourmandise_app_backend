@@ -75,12 +75,13 @@ class client
 
         $stmt = $this->conn->prepare($sqlQuery);
 
-        $stmt->bindParam(1, $this->id);
+        $stmt->bindParam(1, $this->email);
 
         $stmt->execute();
 
         $dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
         if (!empty($dataRow)) {
+           $this->id = $dataRow['id'];
             $this->age = $dataRow['age'];
             $this->sexe = $dataRow['sexe'];
             $this->region = $dataRow['region'];

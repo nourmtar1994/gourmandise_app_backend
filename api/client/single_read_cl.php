@@ -13,7 +13,8 @@
 
     $item = new client($db);
 
-    $item->id = isset($_GET['id']) ? $_GET['id'] : die();
+
+    $item->email = isset($_GET['email']) ? $_GET['email'] : '';
     $item->getSingleclient();
 
     if($item->age != null){
@@ -32,7 +33,7 @@
     }
       
     else{
-        http_response_code(404);
-        echo json_encode("client not found.");
+        http_response_code(200);
+        echo json_encode(false);
     }
 ?>

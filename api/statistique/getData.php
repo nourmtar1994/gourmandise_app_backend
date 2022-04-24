@@ -13,12 +13,12 @@
         $employeeArr = array();
         $employeeArr["body"] = array();
         $employeeArr["itemCount"] = $itemCount;
-
+        
          foreach ($rows as $row) {
             extract($row);
             $e = array(
                 "idEv" => $idEv,
-                "id_client" => $id_client,
+                "id_client" => $idClient,
                 "id_pt_de_vente" => $id_pt_de_vente,
                 "nom" => $nom,
                 "region" => $region,

@@ -22,9 +22,12 @@
     $item->reponse = $data->reponse;
     $item->created = date('y-m-d h:i:s');
     
-    if($item->create_question()){
-        echo 'created successfully.';
-    } else{
-        echo ' could not be created.';
+    if($item->label != '') {
+        if($item->create_question()){
+            echo 'created successfully.';
+        } else{
+            echo ' could not be created.';
+        }
     }
+   
 ?>
